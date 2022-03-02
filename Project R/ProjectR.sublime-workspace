@@ -4,16 +4,76 @@
 		"selected_items":
 		[
 			[
+				"ti",
+				"timeStep"
+			],
+			[
+				"Time",
+				"hireTimeInSeconds"
+			],
+			[
+				"te",
+				"tempPos"
+			],
+			[
+				"tem",
+				"tempPos"
+			],
+			[
+				"tm",
+				"tempPos"
+			],
+			[
+				"Vec",
+				"Vector2f"
+			],
+			[
+				"p_",
+				"p_pos"
+			],
+			[
+				"en",
+				"entities"
+			],
+			[
+				"gr",
+				"grassTexture"
+			],
+			[
+				"En",
+				"Entity"
+			],
+			[
+				"SDL",
+				"SDL_Rect"
+			],
+			[
+				"p",
+				"p_tex"
+			],
+			[
+				"do",
+				"double"
+			],
+			[
+				"clas",
+				"class"
+			],
+			[
+				"ren",
+				"renderer"
+			],
+			[
+				"SDL_",
+				"SDL_Texture"
+			],
+			[
 				"w",
 				"window"
 			],
 			[
 				"re",
 				"renderer"
-			],
-			[
-				"p_",
-				"p_filePath"
 			],
 			[
 				"SDL_q",
@@ -105,6 +165,7 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Lenovo/Desktop/Project R/include/entity.cpp",
 		"/C/Users/Lenovo/Desktop/Project R/ProjectR.sublime-project",
 		"/C/Users/Lenovo/AppData/Roaming/Sublime Text/Packages/Default/exec.py",
 		"/C/Users/Lenovo/AppData/Roaming/Sublime Text/Packages/Default/Preferences.sublime-settings",
