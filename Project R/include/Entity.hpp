@@ -12,6 +12,10 @@ public:
 	{
 		return pos;
 	}
+	void setPos(Vector2f p_pos)
+	{
+		 pos = p_pos;
+	}
 	SDL_Texture* getTex();
 	SDL_Rect getCurrentFrame();
 private:

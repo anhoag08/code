@@ -29,6 +29,8 @@ int main(int argc, char* args[])
 	vector<Entity> entities;
 
 	int s = 0;
+	bool px = true;
+	bool py = true;
 
 	cin >> s;
 
@@ -59,6 +61,8 @@ int main(int argc, char* args[])
 
 		accumulator += frameTime;
 
+		const Uint8 *state = SDL_GetKeyboardState(NULL);
+
 		while(accumulator >= timeStep)
 		{
 			while (SDL_PollEvent(&event))
@@ -66,6 +70,10 @@ int main(int argc, char* args[])
 				if (event.type == SDL_QUIT)
 				{
 					gameRunning = false;
+				}
+				if(state[SDL_SCANCODE_W])
+				{
+					cout << "W" << endl;
 				}
 			}
 
@@ -75,12 +83,34 @@ int main(int argc, char* args[])
 		const float alpha = accumulator / timeStep;
 
 		window.clear();
+
 		for(Entity& e : entities)
 		{
 			window.render(e);
-		}
 
-		cout << utils::hireTimeInSeconds() << endl;
+			Vector2f nPos = e.getPos();
+
+
+			// if(e.getPos().x > 1280 - e.getCurrentFrame().w || e.getPos().x < 0)
+			// {
+			// 	if(e.getPos().x > 1280 - e.getCurrentFrame().w){px = false;}
+			// 	if(e.getPos().x < 0){px = true;}
+			// }
+
+			// if(e.getPos().y > 720 - e.getCurrentFrame().h || e.getPos().y < 0)
+			// {
+			// 	if(e.getPos().y > 720 - e.getCurrentFrame().h){py = false;}
+			// 	if(e.getPos().y < 0){py = true;}
+			// }
+
+			// if(px == true){nPos.x++;}
+			// else{nPos.x--;}
+
+			// if(py == true){nPos.y++;}
+			// else{nPos.y--;}
+
+			e.setPos(nPos);
+		}
 
 		window.display();
 

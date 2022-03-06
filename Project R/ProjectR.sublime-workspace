@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"n",
+				"nPos"
+			],
+			[
+				"p",
+				"p_pos"
+			],
+			[
+				"pos",
+				"getPos"
+			],
+			[
 				"ti",
 				"timeStep"
 			],
@@ -46,10 +58,6 @@
 			[
 				"SDL",
 				"SDL_Rect"
-			],
-			[
-				"p",
-				"p_tex"
 			],
 			[
 				"do",
@@ -165,6 +173,8 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Lenovo/Desktop/Project R/include/Entity.hpp",
+		"/C/Users/Lenovo/Desktop/Project R/src/entity.cpp",
 		"/C/Users/Lenovo/Desktop/Project R/include/entity.cpp",
 		"/C/Users/Lenovo/Desktop/Project R/ProjectR.sublime-project",
 		"/C/Users/Lenovo/AppData/Roaming/Sublime Text/Packages/Default/exec.py",
