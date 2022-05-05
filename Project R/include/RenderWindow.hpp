@@ -17,7 +17,12 @@ public:
 	void cleanUp();
 	void clear();
 	void render(Entity& p_entity);
+	void draw(SDL_Texture* p_tex, SDL_Rect &src, SDL_Rect &dst);
 	void display();
+	SDL_Renderer* getRenderer()
+	{
+		return renderer;
+	}
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;

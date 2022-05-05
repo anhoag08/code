@@ -4,6 +4,146 @@
 		"selected_items":
 		[
 			[
+				"mo",
+				"moveStart"
+			],
+			[
+				"re",
+				"reloadLvl"
+			],
+			[
+				"l",
+				"lvlIndex"
+			],
+			[
+				"c",
+				"currentType"
+			],
+			[
+				"new",
+				"newType"
+			],
+			[
+				"move",
+				"moveStart"
+			],
+			[
+				"che",
+				"checkNpos"
+			],
+			[
+				"r",
+				"robot"
+			],
+			[
+				"c_",
+				"c_pos"
+			],
+			[
+				"cal",
+				"class"
+			],
+			[
+				"p_",
+				"p_pos"
+			],
+			[
+				"ve",
+				"Vector2f"
+			],
+			[
+				"map",
+				"maploaded"
+			],
+			[
+				"SDL",
+				"SDL_Texture"
+			],
+			[
+				"chec",
+				"check_r"
+			],
+			[
+				"st",
+				"startPos"
+			],
+			[
+				"mov",
+				"moveTime1"
+			],
+			[
+				"fram",
+				"frameStart"
+			],
+			[
+				"fr",
+				"frameTime"
+			],
+			[
+				"fra",
+				"frameDelay"
+			],
+			[
+				"f",
+				"frameStart"
+			],
+			[
+				"frame",
+				"frameTime"
+			],
+			[
+				"SDL_get",
+				"SDL_GetWindowDisplayIndex"
+			],
+			[
+				"sd",
+				"SDL_Rect"
+			],
+			[
+				"SDL_",
+				"SDL_Texture"
+			],
+			[
+				"load",
+				"loadMap"
+			],
+			[
+				"M",
+				"Map"
+			],
+			[
+				"i",
+				"inc"
+			],
+			[
+				"in",
+				"include"
+			],
+			[
+				"SD",
+				"SDL_Texture"
+			],
+			[
+				"get",
+				"getPos"
+			],
+			[
+				"ge",
+				"getPos"
+			],
+			[
+				"ent",
+				"entities"
+			],
+			[
+				"enti",
+				"Entity"
+			],
+			[
+				"en",
+				"entities"
+			],
+			[
 				"n",
 				"nPos"
 			],
@@ -40,24 +180,12 @@
 				"Vector2f"
 			],
 			[
-				"p_",
-				"p_pos"
-			],
-			[
-				"en",
-				"entities"
-			],
-			[
 				"gr",
 				"grassTexture"
 			],
 			[
 				"En",
 				"Entity"
-			],
-			[
-				"SDL",
-				"SDL_Rect"
 			],
 			[
 				"do",
@@ -72,24 +200,12 @@
 				"renderer"
 			],
 			[
-				"SDL_",
-				"SDL_Texture"
-			],
-			[
 				"w",
 				"window"
 			],
 			[
-				"re",
-				"renderer"
-			],
-			[
 				"SDL_q",
 				"SDL_Quit"
-			],
-			[
-				"i",
-				"include"
 			],
 			[
 				"Ren",
@@ -173,6 +289,12 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Lenovo/Desktop/Project R/include/Game.hpp",
+		"/C/Users/Lenovo/Desktop/Project R/include/Math.hpp",
+		"/C/Users/Lenovo/Desktop/Project R/src/map.cpp",
+		"/C/Users/Lenovo/Desktop/Project R/include/Map.hpp",
+		"/C/Users/Lenovo/Desktop/Project R/src/TEST.cpp",
+		"/C/Users/Lenovo/Desktop/Project R/src/math.cpp",
 		"/C/Users/Lenovo/Desktop/Project R/include/Entity.hpp",
 		"/C/Users/Lenovo/Desktop/Project R/src/entity.cpp",
 		"/C/Users/Lenovo/Desktop/Project R/include/entity.cpp",
@@ -183,7 +305,7 @@
 	],
 	"find":
 	{
-		"height": 32.0
+		"height": 39.3333333333
 	},
 	"find_in_files":
 	{
@@ -197,6 +319,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"index",
+			"frameDelay",
 			"finish",
 			"def finish"
 		],
@@ -235,7 +359,7 @@
 	"pinned_build_system": "Build Debug",
 	"replace":
 	{
-		"height": 60.0
+		"height": 72.0
 	},
 	"save_all_on_build": true,
 	"select_file":

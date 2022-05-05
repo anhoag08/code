@@ -3,13 +3,24 @@
 #include <iostream>
 #include <vector>
 
-
 #include "RenderWindow.hpp"
 #include "Entity.hpp"
 #include "Math.hpp"
-#include "Utils.hpp"
+#include "Map.hpp"
 
 using namespace std;
+
+int checkCpos(Vector2f c_pos, int map[15][24])
+{
+	int c_row = c_pos.y/32, c_col = c_pos.x/32;
+	return map[c_row][c_col];
+}
+
+int checkNpos(Vector2f n_pos, int map[15][24])
+{
+	int n_row = n_pos.y/32, n_col = n_pos.x/32;
+	return map[n_row][n_col];
+}
 
 int main(int argc, char* args[])
 {
@@ -22,103 +33,192 @@ int main(int argc, char* args[])
 		cout << "IMG ERROR : " << SDL_GetError() << endl;
 	}
 
-	RenderWindow window("Game v1.0", 1280, 720);
+	unsigned int width	= 32*24, height = 32*15;
+	RenderWindow window("Game v1.0", width, height);
 
-	SDL_Texture* grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
+	vector<char> move;
 
-	vector<Entity> entities;
+	const int FPS = 60, frameDelay = 1000/FPS, moveDelay = 500;
+	int frameTime, moveTime, moveIndex = 0, lvlIndex = 0;
+	Uint32 frameStart, moveStart;
+	Vector2f newPos, startPos;
+	string lvl[] = {"res/dev/lvl1.txt","0",
+					"res/dev/lvl2.txt","0",
+					"res/dev/lvl3.txt"};
 
-	int s = 0;
-	bool px = true;
-	bool py = true;
+	newPos.x = newPos.y = startPos.x = startPos.y = 32;
 
-	cin >> s;
-
-	for(int i=0; i<s; i++)
-	{
-		Vector2f tempPos;
-		cin >> tempPos.x >> tempPos.y;
-		Entity tempE(tempPos, grassTexture);
-		entities.push_back(tempE);
-	}
+	SDL_Texture* Robot = window.loadTexture("res/gfx/Box2.png");
+	Entity robot(startPos, Robot);
+	Map cmap(window);
 
 	bool gameRunning = true;
+	bool maploaded = false;
+	bool reloadLvl = false;
+	bool firstTimeLoad = false;
+	bool clear = false;
 
-	SDL_Event event;
-
-	const float timeStep = 0.01f;
-	float accumulator = 0.0f;
-	float currentTime = utils::hireTimeInSeconds();
+	SDL_Event event; 
 
 	while(gameRunning)
 	{
-		int startTicks = SDL_GetTicks();
 
-		float newTime = utils::hireTimeInSeconds();
-		float frameTime = newTime - currentTime;
+		frameStart = SDL_GetTicks();
 
-		currentTime = newTime;
-
-		accumulator += frameTime;
-
-		const Uint8 *state = SDL_GetKeyboardState(NULL);
-
-		while(accumulator >= timeStep)
+		if((!maploaded)||reloadLvl)
 		{
-			while (SDL_PollEvent(&event))
-			{
-				if (event.type == SDL_QUIT)
-				{
-					gameRunning = false;
-				}
-				if(state[SDL_SCANCODE_W])
-				{
-					cout << "W" << endl;
-				}
-			}
-
-			accumulator -= timeStep;
+			cmap.loadMap(lvl[lvlIndex], startPos);
+			cout << startPos.x/32 << ' ' << startPos.y/32 << endl;
+			newPos = startPos;
+			maploaded = 1;
+			if(reloadLvl){reloadLvl = 0;}
 		}
 
-		const float alpha = accumulator / timeStep;
+		int currentType = checkCpos(robot.getPos(), cmap.cmap);
+
+
+		//EVENT HANDLING START
+
+		while (SDL_PollEvent(&event))
+		{
+			if (event.type == SDL_QUIT)
+			{
+				gameRunning = false;
+			}
+
+			if(event.type == SDL_MOUSEMOTION)
+			{
+				cout << "mouse moved" << endl;
+			}
+
+			if(event.type == SDL_KEYDOWN)
+			{
+				cout << "key pressed" << endl;
+				if(firstTimeLoad == 1 && currentType == 3)
+				{
+					if(event.key.keysym.sym == SDLK_UP)
+					{
+						newPos.y-=32;
+						move.push_back('u');
+					}
+					if(event.key.keysym.sym == SDLK_DOWN)
+					{
+						newPos.y+=32;
+						move.push_back('d');
+					}
+					if(event.key.keysym.sym == SDLK_LEFT)
+					{
+						newPos.x-=32;
+						move.push_back('l');
+					}
+					if(event.key.keysym.sym == SDLK_RIGHT)
+					{
+						newPos.x+=32;
+						move.push_back('r');
+					}
+					for(int i=0; i<move.size(); i++)
+					{
+						cout << move[i] << ' ';
+					}
+					cout << endl;
+				}
+			}
+		}
+
+		if(firstTimeLoad == 1 && (currentType == 3 || currentType == 4 || currentType == 1))
+		{
+			if(clear == 1 || currentType == 4 || currentType == 1)
+			{
+				move.clear();
+				cout << move.size();
+				clear = 0;
+				moveIndex = 0;
+				moveStart = SDL_GetTicks();
+			}
+			if(currentType == 1)
+			{
+				reloadLvl = 1;
+			}
+			if(currentType == 4)
+			{
+				lvlIndex++;
+				reloadLvl = 1;
+				firstTimeLoad = 0;
+			}
+		}
+
+		if(firstTimeLoad == 1 && currentType == 0)
+		{
+			moveStart = SDL_GetTicks();
+
+			if(move[moveIndex] == 'u')
+			{
+				newPos.y-=32;
+			}
+			if(move[moveIndex] == 'd')
+			{
+				newPos.y+=32;
+			}
+			if(move[moveIndex] == 'l')
+			{
+				newPos.x-=32;
+			}
+			if(move[moveIndex] == 'r')
+			{
+				newPos.x+=32;
+			}
+			moveIndex++;
+			if(moveIndex > move.size() - 1){moveIndex = 0;}
+			if(clear == 0){clear = 1;}
+		}
+
+		moveTime = SDL_GetTicks() - moveStart;
+
+		if(moveDelay > moveTime)
+		{
+			SDL_Delay(moveDelay - moveTime);
+		}
+
+		//EVENT HANDLING END
 
 		window.clear();
+  
 
-		for(Entity& e : entities)
+		// GAME UPDATE START
+
+		int newType = checkNpos(newPos, cmap.cmap);
+
+		if(firstTimeLoad == 1 && newType == 2)
 		{
-			window.render(e);
+			newPos = robot.getPos();
+		}
 
-			Vector2f nPos = e.getPos();
+		//GAME UPDATE END
 
 
-			// if(e.getPos().x > 1280 - e.getCurrentFrame().w || e.getPos().x < 0)
-			// {
-			// 	if(e.getPos().x > 1280 - e.getCurrentFrame().w){px = false;}
-			// 	if(e.getPos().x < 0){px = true;}
-			// }
+		//GAME RENDER START
 
-			// if(e.getPos().y > 720 - e.getCurrentFrame().h || e.getPos().y < 0)
-			// {
-			// 	if(e.getPos().y > 720 - e.getCurrentFrame().h){py = false;}
-			// 	if(e.getPos().y < 0){py = true;}
-			// }
 
-			// if(px == true){nPos.x++;}
-			// else{nPos.x--;}
+		cmap.drawMap();
 
-			// if(py == true){nPos.y++;}
-			// else{nPos.y--;}
+		robot.setPos(newPos);
+		window.render(robot);
+		//GAME RENDER END
 
-			e.setPos(nPos);
+
+
+		frameTime = SDL_GetTicks() - frameStart;
+
+		if(frameDelay > frameTime)
+		{
+			SDL_Delay(frameDelay - frameTime);
 		}
 
 		window.display();
 
-		int frameTicks = SDL_GetTicks() - startTicks;
-
-		if(frameTicks < 1000 / window.getRefreshRate())
+		if(firstTimeLoad == 0)
 		{
-			SDL_Delay(1000 / window.getRefreshRate() - frameTicks);
+			firstTimeLoad = 1;
 		}
 
 	}

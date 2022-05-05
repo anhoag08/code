@@ -69,6 +69,11 @@ void RenderWindow::render(Entity& p_entity)
 	SDL_RenderCopy(renderer, p_entity.getTex(), &src, &dst);
 }
 
+void RenderWindow::draw(SDL_Texture* p_tex, SDL_Rect &src, SDL_Rect &dst)
+{
+	SDL_RenderCopy(renderer, p_tex, &src, &dst);
+}
+
 void RenderWindow::display()
 {
 	SDL_RenderPresent(renderer);
