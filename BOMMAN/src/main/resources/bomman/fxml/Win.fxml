@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1280.0" styleClass="background" stylesheets="@../css/menu.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomman.screen.WinScreen">
+   <children>
+      <Button fx:id="back" layoutX="482.0" layoutY="629.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="113.0" prefWidth="316.0" />
+      <Label alignment="CENTER" layoutY="337.0" prefHeight="215.0" prefWidth="1280.0" text="YOU WIN!" textAlignment="CENTER">
+         <font>
+            <Font name="Lucida Sans Demibold Italic" size="96.0" />
+         </font>
+      </Label>
+      <Button fx:id="settings" layoutX="482.0" layoutY="782.0" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="113.0" prefWidth="316.0" stylesheets="@../css/menu.css" />
+   </children>
+</AnchorPane>
